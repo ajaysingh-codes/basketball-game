@@ -1,51 +1,44 @@
-/*
-    Variable declarations
-*/
 
-let homeScoreEl = document.getElementById("home-score-el")
-let guestScoreEl = document.getElementById("guest-score-el")
+const homeScoreEl = document.getElementById("home-score-el")
+const guestScoreEl = document.getElementById("guest-score-el")
+const containerEl = document.querySelector(".container")
+
+const homeEl = document.getElementById("home")
+const guestEl = document.getElementById("guest")
 
 let homeCount = 0
 let guestCount = 0
 
 /*
-    Functions to change home team's score by 1, 2 or 3 points
+    Add points using an event listener
 */
-function addHome1point(){
-    homeCount += 1
-    homeScoreEl.textContent = homeCount
-}
 
-function addHome2points(){
-    homeCount += 2
-    homeScoreEl.textContent = homeCount
-}
+containerEl.addEventListener("click", function (e) {
+    // console.log(e.target.dataset.homeAdd)
+    const target = e.target
+    const homePoints = target.dataset.homeAdd
+    const guestPoints = target.dataset.guestAdd
 
-function addHome3points(){
-    homeCount += 3
-    homeScoreEl.textContent = homeCount
-}
+    if (homePoints) {
+        homeCount += parseInt(homePoints)
+        homeScoreEl.textContent = homeCount
+    }
+
+    if (guestPoints) {
+        guestCount += +guestPoints
+        guestScoreEl.textContent = guestCount
+    }
+
+    highlightLeader()
+
+    if (homeCount == 15 || guestCount == 15) {
+        confetti()
+    }
+
+})
 
 /*
-    Functions to change guest team's score by 1, 2 or 3 points
-*/
-function addGuest1Point() {
-    guestCount += 1
-    guestScoreEl.textContent = guestCount
-}
-
-function addGuest2Points() {
-    guestCount += 2
-    guestScoreEl.textContent = guestCount
-}
-
-function addGuest3Points() {
-    guestCount += 3
-    guestScoreEl.textContent = guestCount
-}
-
-/*
-    Command to start a new game and set the count to 0
+    To start a new game and set the count to 0
 */
 
 function newGame(){
@@ -53,4 +46,35 @@ function newGame(){
     homeScoreEl.textContent = homeCount
     guestCount = 0
     guestScoreEl.textContent = guestCount
+    homeEl.classList.remove("highlight")
+    guestEl.classList.remove("highlight")
+}
+
+/*
+    To highlight the winner of the game.
+*/
+function highlightLeader() {
+    if (homeCount > guestCount) {
+    homeEl.classList.add("highlight")
+    guestEl.classList.remove("highlight")
+    } else if (homeCount < guestCount) {
+        homeEl.classList.remove("highlight")
+        guestEl.classList.add("highlight")
+    } else {
+        homeEl.classList.remove("highlight")
+        guestEl.classList.remove("highlight")
+    }
+}
+
+/*
+
+*/
+function confetti() {
+    const jsConfetti = new JSConfetti()
+    jsConfetti.addConfetti({
+    emojis: ['🍔', '🍺', '🍕'],
+    confettiNumber: 50,
+    emojiSize: 60
+    })
+    jsConfetti.addConfetti()
 }

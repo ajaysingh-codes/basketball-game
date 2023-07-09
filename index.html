@@ -1,39 +1,36 @@
 <html>
     <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <link rel="stylesheet" href="index.css">
+        <title>Basketball Scoreboard</title>
     </head>
     <body>
-        <div class="container">
-            
-            <div>
-                <h3>Home</h3>
-                <div class="score-container">
+        <main class="container"><!--main-->
+            <section><!--Team 1-->
+                <h3>Team 1</h3>
+                <div id="home" class="score-container">
                     <p id="home-score-el">0</p>
                 </div>
                 <div>
-                    <button onclick="addHome1point()">+1</button>
-                    <button onclick="addHome2points()">+2</button>
-                    <button onclick="addHome3points()">+3</button>
+                    <button data-home-add="1">+1</button>
+                    <button data-home-add="2">+2</button>
+                    <button data-home-add="3">+3</button>
                 </div>
-                
-            </div>
-            
-            <div>
-                <h3>Away</h3>
-                <div class="score-container">
+            </section><!--Team 1-->
+            <section><!--Team 2-->
+                <h3>Team 2</h3>
+                <div id="guest" class="score-container">
                     <p id="guest-score-el">0</p>
                 </div>
                 <div>
-                    <button onclick="addGuest1Point()">+1</button>
-                    <button onclick="addGuest2Points()">+2</button>
-                    <button onclick="addGuest3Points()">+3</button>
+                    <button data-guest-add="1">+1</button>
+                    <button data-guest-add="2">+2</button>
+                    <button data-guest-add="3">+3</button>
                 </div>
-            </div>
-            
-            
-        </div>
+            </section><!--Team 2-->
+        </main><!--main-->
         <button id="new-game-btn" onclick="newGame()">New Game</button>
-        
+
         <script src="index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     </body>
 </html>

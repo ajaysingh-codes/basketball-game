@@ -28,7 +28,7 @@ h3 {
     margin: 20px auto;
     border: 4px solid ;
     border-radius: 5px;
-    
+
 }
 
 .score-container {
@@ -41,12 +41,17 @@ h3 {
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
 }
 
 .score-container p {
     font-size: 90px;
     padding-top: 10px;
+}
+
+.highlight {
+    border: 10px solid green;
+    color: blue;
 }
 
 button {
